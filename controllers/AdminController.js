@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const Course = require("../models/Course");
-const Announcement = require("../models/Annoucement");
+const Announcement = require("../models/Announcement");
 
 class AdminController {
     static async login(req, res) {

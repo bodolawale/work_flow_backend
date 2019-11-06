@@ -1,13 +1,14 @@
 const User = require("../models/User");
-const Announcement = require("../models/Annoucement");
+const Announcement = require("../models/Announcement");
+const Course = require("../models/Course");
 
 class LecturerController {
     static async login(req, res) {
         try {
-            const { matric, password } = req.body;
-            const lecturer = await User.findOne({ matric, password, role: "lecturer" });
+            const { email, password } = req.body;
+            const lecturer = await User.findOne({ email, password, role: "lecturer" });
             if (!lecturer) {
-                return res.status(404).send({ message: "Lecturer not found" });
+                return res.status(404).send({ message: "Invalid credentials" });
             }
             return res.status(200).send({ message: "Lecturer login successfully!", lecturer });
         } catch (error) {
@@ -32,6 +33,16 @@ class LecturerController {
             return res.status(200).send({ message: "Announcement created successfully!", announcement });
         } catch (error) {
             return res.status(500).send({ message: "Error creating Announcement" });
+        }
+    }
+
+    static async mycourses(req, res) {
+        try {
+            const { lecturerId } = req.params;
+            const courses = await Course.find({ lecturer: lecturerId });
+            return res.status(200).send({ message: "Courses retrived successfully!", courses }).populate("students");
+        } catch (error) {
+            return res.status(500).send({ message: "Error retriving Courses" });
         }
     }
 }

@@ -5,7 +5,7 @@ class LecturerController {
     static async courseRegister(req, res) {
         try {
             const { courseId, studentId } = req.body;
-            const course = await Course.updateOne({ id: courseId }, { $push: { student: studentId } });
+            const course = await Course.updateOne({ _id: courseId }, { $push: { students: studentId } });
             return res.status(200).send({ message: "Course registered successfully!", course });
         } catch (error) {
             return res.status(500).send({ message: "Error registering Course" });
@@ -17,7 +17,7 @@ class LecturerController {
             const { matric, password } = req.body;
             const student = await User.findOne({ matric, password, role: "student" });
             if (!student) {
-                return res.status(404).send({ message: "Student not found" });
+                return res.status(404).send({ message: "Invalid Credentials" });
             }
             return res.status(200).send({ message: "Student login successfully!", student });
         } catch (error) {

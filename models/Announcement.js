@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const AnnoucementSchema = new Schema({
+const AnnouncementSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -33,4 +33,4 @@ const AnnoucementSchema = new Schema({
 
 
 // Export the model
-module.exports = mongoose.model("Annoucement", AnnoucementSchema);
+module.exports = mongoose.model("Announcement", AnnouncementSchema);
