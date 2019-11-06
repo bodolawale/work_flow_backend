@@ -5,10 +5,10 @@ const Announcement = require("../models/Annoucement");
 class AdminController {
     static async login(req, res) {
         try {
-            const { matric, password } = req.body;
-            const admin = await User.findOne({ matric, password, role: "admin" });
+            const { email, password } = req.body;
+            const admin = await User.findOne({ email, password, role: "admin" });
             if (!admin) {
-                return res.status(404).send({ message: "Admin not found" });
+                return res.status(400).send({ message: "Invalid credentials" });
             }
             return res.status(200).send({ message: "Admin login successfully!", admin });
         } catch (error) {
@@ -41,7 +41,7 @@ class AdminController {
     static async registerLecturer(req, res) {
         try {
             const {
-                name, password, email, matric,
+                name, password, email,
             } = req.body;
             if (!email) {
                 return res.status(400).send({ message: "Email Required" });
@@ -51,7 +51,6 @@ class AdminController {
                 email,
                 password,
                 role: "lecturer",
-                matric,
             });
             await lecturer.save();
             return res.status(200).send({ message: "Lecturer registerd successfully!", lecturer });
@@ -63,10 +62,9 @@ class AdminController {
     static async addCourse(req, res) {
         try {
             const {
-                name, code, title,
+                code, title,
             } = req.body;
             const course = new Course({
-                name,
                 code,
                 title,
             });
@@ -82,7 +80,7 @@ class AdminController {
             const {
                 courseId, lecturerId,
             } = req.body;
-            const course = await Course.updateOne({ id: courseId }, { lecturer: lecturerId });
+            const course = await Course.updateOne({ _id: courseId }, { $set: { lecturer: lecturerId } });
             return res.status(200).send({ message: "Lecturer added successfully!", course });
         } catch (error) {
             return res.status(500).send({ message: "Error adding Lecturer" });
