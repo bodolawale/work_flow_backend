@@ -6,5 +6,7 @@ const AdminController = require("../controllers/AdminController");
 router.post("/registerStudent", AdminController.registerStudent);
 router.post("/registerLecturer", AdminController.registerLecturer);
 router.post("/addCourse", AdminController.addCourse);
+router.post("/assignLecturer", AdminController.assignLecturer);
+router.post("/createAnnoucement", AdminController.createAnnouncement);
 
 module.exports = router;

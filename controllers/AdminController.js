@@ -91,7 +91,7 @@ class AdminController {
             await announcement.save();
             return res.status(200).send({ message: "Announcement created successfully!", announcement });
         } catch (error) {
-            return res.status(500).send({ message: "Error adding Lecturer" });
+            return res.status(500).send({ message: "Error creating Announcement" });
         }
     }
 }

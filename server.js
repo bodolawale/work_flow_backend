@@ -5,6 +5,8 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const UserRoutes = require("./routes/UserRoutes");
 const AdminRoutes = require("./routes/AdminRoutes");
+const LecturerRoutes = require("./routes/LecturerRoutes");
+const StudentRoutes = require("./routes/StudentRoutes");
 
 // Load config
 dotenv.config({ path: "./config.env" });
@@ -26,6 +28,8 @@ if (process.env.NODE_ENV === "development") {
 
 app.use("/api/v1/user", UserRoutes);
 app.use("/api/v1/admin", AdminRoutes);
+app.use("/api/v1/lecturer", LecturerRoutes);
+app.use("/api/v1/student", StudentRoutes);
 app.use((req, res) => { res.status(404).json("URl not found"); });
 
 const { PORT } = process.env || 8000;
