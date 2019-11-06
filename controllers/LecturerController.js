@@ -1,6 +1,20 @@
+const User = require("../models/User");
 const Announcement = require("../models/Annoucement");
 
 class LecturerController {
+    static async login(req, res) {
+        try {
+            const { matric, password } = req.body;
+            const lecturer = await User.findOne({ matric, password, role: "lecturer" });
+            if (!lecturer) {
+                return res.status(404).send({ message: "Lecturer not found" });
+            }
+            return res.status(200).send({ message: "Lecturer login successfully!", lecturer });
+        } catch (error) {
+            return res.status(500).send({ message: "Error logging Lecturer" });
+        }
+    }
+
     static async createAnnouncement(req, res) {
         try {
             const {

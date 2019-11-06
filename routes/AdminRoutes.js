@@ -8,5 +8,6 @@ router.post("/registerLecturer", AdminController.registerLecturer);
 router.post("/addCourse", AdminController.addCourse);
 router.post("/assignLecturer", AdminController.assignLecturer);
 router.post("/createAnnoucement", AdminController.createAnnouncement);
+router.post("/adminLogin", AdminController.login);
 
 module.exports = router;

@@ -3,6 +3,19 @@ const Course = require("../models/Course");
 const Announcement = require("../models/Annoucement");
 
 class AdminController {
+    static async login(req, res) {
+        try {
+            const { matric, password } = req.body;
+            const admin = await User.findOne({ matric, password, role: "admin" });
+            if (!admin) {
+                return res.status(404).send({ message: "Admin not found" });
+            }
+            return res.status(200).send({ message: "Admin login successfully!", admin });
+        } catch (error) {
+            return res.status(500).send({ message: "Error logging Admin" });
+        }
+    }
+
     static async registerStudent(req, res) {
         try {
             const {
