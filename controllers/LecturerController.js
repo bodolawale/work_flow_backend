@@ -39,8 +39,8 @@ class LecturerController {
     static async mycourses(req, res) {
         try {
             const { lecturerId } = req.params;
-            const courses = await Course.find({ lecturer: lecturerId });
-            return res.status(200).send({ message: "Courses retrived successfully!", courses }).populate("students");
+            const courses = await Course.find({ lecturer: lecturerId }).populate("students");
+            return res.status(200).send({ message: "Courses retrived successfully!", courses });
         } catch (error) {
             return res.status(500).send({ message: "Error retriving Courses" });
         }

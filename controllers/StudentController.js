@@ -24,6 +24,16 @@ class LecturerController {
             return res.status(500).send({ message: "Error logging student" });
         }
     }
+
+    static async myCourses(req, res) {
+        try {
+            const { studentId } = req.params;
+            const courses = await Course.find({ students: { $in: studentId } }).populate("lecturer").populate("students");
+            return res.status(200).send({ message: "Courses retrived successfully!", courses });
+        } catch (error) {
+            return res.status(500).send({ message: "Error retriving Courses" });
+        }
+    }
 }
 
 module.exports = LecturerController;
