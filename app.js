@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
@@ -13,6 +14,8 @@ const AnnouncementRoutes = require("./routes/AnnouncementRoutes");
 dotenv.config({ path: "./config.env" });
 
 const app = express();
+
+app.use(cors());
 
 app.use(helmet());
 
