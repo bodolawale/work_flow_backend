@@ -105,6 +105,15 @@ class AdminController {
             return res.status(500).send({ message: "Error creating Announcement" });
         }
     }
+
+    static async admin(req, res) {
+        try {
+            const admin = await User.find({ role: "admin" });
+            return res.status(200).send({ message: "Admin retrived successfully!", admin });
+        } catch (error) {
+            return res.status(500).send({ message: "Error retriving Admin" });
+        }
+    }
 }
 
 module.exports = AdminController;

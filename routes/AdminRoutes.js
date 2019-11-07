@@ -9,5 +9,7 @@ router.post("/addCourse", AdminController.addCourse);
 router.post("/assignLecturer", AdminController.assignLecturer);
 router.post("/createAnnoucement", AdminController.createAnnouncement);
 router.post("/adminLogin", AdminController.login);
+router.get("/admin", AdminController.admin);
+
 
 module.exports = router;
