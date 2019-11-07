@@ -1,9 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const AnnouncemetController = require("../controllers/AnnouncementController");
+const AnnouncementController = require("../controllers/AnnouncementController");
 
-router.get("/getGeneralAnnouncement", AnnouncemetController.getGeneralAnnouncement);
-router.get("/getCourseAnnouncement/:courseId", AnnouncemetController.getCourseAnnouncement);
+router.get("/getGeneralAnnouncement", AnnouncementController.getGeneralAnnouncement);
+router.get("/getCourseAnnouncement/:courseId", AnnouncementController.getCourseAnnouncement);
 
 module.exports = router;

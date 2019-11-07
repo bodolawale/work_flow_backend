@@ -1,6 +1,6 @@
 const Course = require("../models/Course");
 
-class AnnouncemetController {
+class CourseController {
     static async getAllCourses(req, res) {
         try {
             const course = await Course.find({}).populate("lecturer").populate("students");
@@ -11,4 +11,4 @@ class AnnouncemetController {
     }
 }
 
-module.exports = AnnouncemetController;
+module.exports = CourseController;

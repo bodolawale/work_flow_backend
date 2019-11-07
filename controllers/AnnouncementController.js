@@ -1,6 +1,6 @@
 const Announcement = require("../models/Announcement");
 
-class AnnouncemetController {
+class AnnouncementController {
     static async getGeneralAnnouncement(req, res) {
         try {
             const announcement = await Announcement.find({ isGeneral: true }).populate("createdBy");
@@ -21,4 +21,4 @@ class AnnouncemetController {
     }
 }
 
-module.exports = AnnouncemetController;
+module.exports = AnnouncementController;
