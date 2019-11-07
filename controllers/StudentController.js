@@ -34,6 +34,15 @@ class LecturerController {
             return res.status(500).send({ message: "Error retriving Courses" });
         }
     }
+
+    static async students(req, res) {
+        try {
+            const students = await User.find({ role: "student" });
+            return res.status(200).send({ message: "Students retrived successfully!", students });
+        } catch (error) {
+            return res.status(500).send({ message: "Error retriving Students" });
+        }
+    }
 }
 
 module.exports = LecturerController;
