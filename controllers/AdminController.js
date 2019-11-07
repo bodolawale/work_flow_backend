@@ -62,11 +62,12 @@ class AdminController {
     static async addCourse(req, res) {
         try {
             const {
-                code, title,
+                code, title, units,
             } = req.body;
             const course = new Course({
                 code,
                 title,
+                units,
             });
             await course.save();
             return res.status(200).send({ message: "Course added successfully!", course });
