@@ -9,6 +9,7 @@ const AdminRoutes = require("./routes/AdminRoutes");
 const LecturerRoutes = require("./routes/LecturerRoutes");
 const StudentRoutes = require("./routes/StudentRoutes");
 const AnnouncementRoutes = require("./routes/AnnouncementRoutes");
+const CoureRoutes = require("./routes/CourseRoutes");
 
 // Load config
 dotenv.config({ path: "./config.env" });
@@ -35,6 +36,7 @@ app.use("/api/v1/admin", AdminRoutes);
 app.use("/api/v1/lecturer", LecturerRoutes);
 app.use("/api/v1/student", StudentRoutes);
 app.use("/api/v1/announcement", AnnouncementRoutes);
+app.use("/api/v1/course", CoureRoutes);
 app.use((req, res) => { res.status(404).json("URl not found"); });
 
 const { PORT } = process.env || 8000;
